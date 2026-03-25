@@ -9,7 +9,7 @@ const Footer = ({ isDarkMode }) => {
           <a key={f} href={`#${f.toLowerCase()}`} className="text-[9px] font-bold uppercase tracking-widest hover:text-blue-500 transition-colors">{f}</a>
         ))}
       </div>
-      <p className="text-[8px] md:text-[9px] px-6">© 2024 Andhika Eka Santosa. Crafted with React, Tailwind & Passion.</p>
+      <p className="text-[8px] md:text-[9px] px-6">© {new Date().getFullYear()} Andhika Eka Santosa. Crafted with React, Tailwind & Passion.</p>
     </footer>
   );
 };
