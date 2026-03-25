@@ -59,7 +59,7 @@ export const projects = [
     tech: ["Flutter", "Laravel", "MySQL"],
     desc: "Aplikasi POS berbasis Android yang berguna untuk cetak nota, manajemen produk, serta manajemen transaksi penjualan di Restoran D'chubite.",
     image: "projects/dchubite.png",
-    link: ""
+    link: "https://drive.google.com/drive/folders/1sQTtfIR0OQIbb1T758CFzpT4D8T64zYN?usp=sharing"
   },
   {
     title: "Medical Claim Internal System - R&D Polytron",
