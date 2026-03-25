@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './CustomIcons';
+import { GithubIcon, LinkedinIcon, WhatsappIcon } from './CustomIcons';
 
 const Contact = ({ glassStyle, textSub }) => {
   return (
@@ -22,6 +22,9 @@ const Contact = ({ glassStyle, textSub }) => {
             </a>
             <a href="https://github.com/andhikaeka3333333" target="_blank" rel="noopener noreferrer" className={`p-3.5 md:p-4 rounded-xl border ${glassStyle} hover:border-gray-400 hover:text-gray-400 hover:scale-110 transition-all`}>
               <GithubIcon size={20} />
+            </a>
+            <a href="https://wa.me/6285656596197" target="_blank" rel="noopener noreferrer" className={`p-3.5 md:p-4 rounded-xl border ${glassStyle} hover:border-gray-400 hover:text-gray-400 hover:scale-110 transition-all`}>
+              <WhatsappIcon size={20} />
             </a>
           </div>
         </div>
