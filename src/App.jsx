@@ -8,6 +8,21 @@ import Certificates from './components/Certificates';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { Helmet } from "react-helmet";
+
+<Helmet>
+  <title>Andhika Eka Santosa - Software Developer</title>
+  <meta 
+    name="description" 
+    content="Portfolio Andhika Eka Santosa, Software Developer dari Indonesia yang fokus pada Flutter, Laravel, dan Web Development." 
+  />
+  <meta name="keywords" content="Andhika Eka Santosa, Software Developer, Flutter Developer, Laravel Developer" />
+
+  {/* Open Graph (biar bagus kalau dishare) */}
+  <meta property="og:title" content="Andhika Eka Santosa Portfolio" />
+  <meta property="og:description" content="Portfolio developer Andhika Eka Santosa" />
+  <meta property="og:type" content="website" />
+</Helmet>
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
