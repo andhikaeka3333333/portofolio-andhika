@@ -24,7 +24,7 @@ export const projects = [
     tech: ["Laravel", "Tailwind", "MySQL", "AI-Integration"],
     desc: "Proyek ini adalah platform kesehatan berbasis AI yang membantu pengguna memantau pola hidup sehat melalui fitur pengenalan makanan dari foto untuk menghitung kalori dan nutrisi secara otomatis. Dilengkapi dashboard statistik real-time, asisten chat “Tanya AI” untuk konsultasi kesehatan, fitur komunitas, sistem artikel edukasi (CMS), serta admin panel untuk pengelolaan dan keamanan platform.",
     image: "projects/goodlife.png",
-    link: "https://goodlife.rplrus.com"
+    link: "https://github.com/andhikaeka3333333/goodlife"
   },
   {
     title: "E-Branch Bank Jateng Syariah",
@@ -45,14 +45,14 @@ export const projects = [
     tech: ["Laravel", "Tailwind", "MySQL"],
     desc: "Sebuah aplikasi web yang menyediakan sistem pendaftaran online untuk program vokasi di Polytron. Proyek ini digunakan untuk memudahkan proses pendaftaran dan manajemen data siswa yang mendaftar ke program vokasi Polytron.",
     image: "projects/webvokasi.png",
-    link: "https://vokasipolytron.rplrus.com"
+    link: "https://github.com/andhikaeka3333333/vokasi_pkl"
   },
   {
     title: "Starindo Marketing Internal System",
     tech: ["Laravel", "Tailwind", "MySQL"],
     desc: "Sebuah aplikasi web yang menyediakan biaya perjalanan untuk tim marketing, serta fitur omset untuk membandingkan omset dengan biaya pengajuan",
     image: "projects/starindo.png",
-    link: ""
+    link: "https://github.com/andhikaeka3333333/starindo_marketing"
   },
   {
     title: "Dchubite POS - Mobile Application",
@@ -60,7 +60,7 @@ export const projects = [
     desc: "Aplikasi POS berbasis Android yang berguna untuk cetak nota, manajemen produk, serta manajemen transaksi penjualan di Restoran D'chubite.",
     image: "projects/dchubite.png",
     link: "https://drive.google.com/drive/folders/1sQTtfIR0OQIbb1T758CFzpT4D8T64zYN?usp=sharing"
-  },
+  },  
   {
     title: "Medical Claim Internal System - R&D Polytron",
     tech: ["PHP", "Semantic UI", "MySQL", "JQuery"],
@@ -92,7 +92,8 @@ export const certificates = [
 export const timelineData = [
   { company: "PT Starindo Jaya Packaging", role: "Software Developer", period: "Februari 2025 - Sekarang", description: "Mengembangkan aplikasi untuk mendukung sistem internal perusahaan, seperti biaya perjalanan marketing serta omset." },
   { company: "Polytron Indonesia", role: "Intern R&D Web Developer", period: "Agustus 2025 - Januari 2026", description: "Berkontribusi dalam pengembangan sistem internal untuk Medical Claim, Distribusi Surat Izin dan Lembur Karyawan, Serta PPDB Vokasi." },
-  { company: "SMK Raden Umar Said", role: "Pengembangan Perangkat Lunak dan Gim", period: "Juli 2023 - Mei 2026", description: "Mempelajari fundamental pemrograman, desain sistem aplikasi, pengembangan website dengan laravel, dan pengembangan aplikasi mobile, serta perancangan database." }
+  { company: "SMK Raden Umar Said", role: "Pengembangan Perangkat Lunak dan Gim", period: "Juli 2023 - Mei 2026", description: "Mempelajari fundamental pemrograman, desain sistem aplikasi, pengembangan website dengan laravel, dan pengembangan aplikasi mobile, serta perancangan database." },
+  { company: "Institut Teknologi Sepuluh Nopember (ITS)", role: "Teknik Informatika", period: "Juli 2026 - 2030", description: "Memperdalam pengetahuan dalam bidang teknologi informasi, khususnya dalam pengembangan perangkat lunak, artificial intelligence, dan lain-lain." }
 ];
 
 export const skillCategories = [
