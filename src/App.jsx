@@ -8,6 +8,7 @@ import Certificates from './components/Certificates';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FloatingCV from './components/FloatingCV';
 import { Helmet } from "react-helmet";
 
 <Helmet>
@@ -84,6 +85,7 @@ const App = () => {
       </main>
 
       <Footer isDarkMode={isDarkMode} />
+      <FloatingCV isDarkMode={isDarkMode} />
     </div>
   );
 };
