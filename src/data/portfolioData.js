@@ -93,7 +93,7 @@ export const timelineData = [
   { company: "PT Starindo Jaya Packaging", role: "Software Developer", period: "Februari 2025 - Sekarang", description: "Mengembangkan aplikasi untuk mendukung sistem internal perusahaan, seperti biaya perjalanan marketing serta omset." },
   { company: "Polytron Indonesia", role: "Intern R&D Web Developer", period: "Agustus 2025 - Januari 2026", description: "Berkontribusi dalam pengembangan sistem internal untuk Medical Claim, Distribusi Surat Izin dan Lembur Karyawan, Serta PPDB Vokasi." },
   { company: "SMK Raden Umar Said", role: "Pengembangan Perangkat Lunak dan Gim", period: "Juli 2023 - Mei 2026", description: "Mempelajari fundamental pemrograman, desain sistem aplikasi, pengembangan website dengan laravel, dan pengembangan aplikasi mobile, serta perancangan database." },
-  { company: "Institut Teknologi Sepuluh Nopember (ITS)", role: "Teknik Informatika", period: "Juli 2026 - 2030", description: "Memperdalam pengetahuan dalam bidang teknologi informasi, khususnya dalam pengembangan perangkat lunak, artificial intelligence, dan lain-lain." }
+  { company: "Institut Teknologi Sepuluh Nopember (ITS)", role: "Teknik Informatika", period: "Juli 2026 - 2030", description: "Memperdalam pengetahuan dalam bidang teknik informatika, khususnya dalam pengembangan perangkat lunak, artificial intelligence, dan lain-lain." }
 ];
 
 export const skillCategories = [
