@@ -12,7 +12,7 @@ const Navbar = ({ isScrolled, isDarkMode, toggleTheme, mobileMenuOpen, setMobile
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          {['About', 'Experience', 'Projects', 'Certificates'].map((item) => (
+          {['About', 'Experience', 'Projects', 'Certificates', 'Articles'].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-all hover:text-blue-500 ${textSub}`}>
               {item}
             </a>
@@ -50,7 +50,7 @@ const Navbar = ({ isScrolled, isDarkMode, toggleTheme, mobileMenuOpen, setMobile
             className={`absolute top-[100%] left-0 w-full p-4 md:hidden`}
           >
             <div className={`rounded-2xl border p-4 flex flex-col gap-2 shadow-2xl backdrop-blur-xl ${navBg}`}>
-              {['About', 'Experience', 'Projects', 'Certificates'].map((item) => (
+              {['About', 'Experience', 'Projects', 'Certificates', 'Articles'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
