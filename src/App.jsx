@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Articles from './components/Articles';
 import Certificates from './components/Certificates';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
@@ -81,6 +82,7 @@ const App = () => {
         <Projects glassStyle={glassStyle} textSub={textSub} />
         <Certificates isDarkMode={isDarkMode} glassStyle={glassStyle} textSub={textSub} />
         <Skills glassStyle={glassStyle} textSub={textSub} />
+        <Articles isDarkMode={isDarkMode} glassStyle={glassStyle} textSub={textSub} />
         <Contact glassStyle={glassStyle} textSub={textSub} />
       </main>
 
