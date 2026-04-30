@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Send, User, MessageCircle } from 'lucide-react';
+import { Send, User, MessageCircle, ReceiptRussianRuble } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CommentSection = ({ articleId, textSub }) => {

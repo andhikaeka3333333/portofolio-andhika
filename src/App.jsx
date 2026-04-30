@@ -10,13 +10,14 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingCV from './components/FloatingCV';
+import AskAI from './components/AskAI';
 import { Helmet } from "react-helmet";
 
 <Helmet>
   <title>Andhika Eka Santosa - Software Developer</title>
-  <meta 
-    name="description" 
-    content="Portfolio Andhika Eka Santosa, Software Developer dari Indonesia yang fokus pada Flutter, Laravel, dan Web Development." 
+  <meta
+    name="description"
+    content="Portfolio Andhika Eka Santosa, Software Developer dari Indonesia yang fokus pada Flutter, Laravel, dan Web Development."
   />
   <meta name="keywords" content="Andhika Eka Santosa, Software Developer, Flutter Developer, Laravel Developer" />
 
@@ -30,6 +31,7 @@ const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isAIOpen, setIsAIOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -65,18 +67,20 @@ const App = () => {
         <div className={`absolute bottom-0 right-0 w-[50%] h-[30%] md:w-[30%] ${isDarkMode ? 'bg-indigo-600/10' : 'bg-indigo-400/10'} blur-[80px] md:blur-[100px] rounded-full`} />
       </div>
 
-      <Navbar 
-        isScrolled={isScrolled} 
-        isDarkMode={isDarkMode} 
-        toggleTheme={toggleTheme} 
-        mobileMenuOpen={mobileMenuOpen} 
-        setMobileMenuOpen={setMobileMenuOpen} 
-        navBg={navBg} 
-        textSub={textSub} 
+      <Navbar
+        isAIOpen={isAIOpen}
+        isScrolled={isScrolled}
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        navBg={navBg}
+        textSub={textSub}
       />
 
       <main className="relative z-10">
-        <Hero isDarkMode={isDarkMode} textSub={textSub} />
+        <Hero isDarkMode={isDarkMode} textSub={textSub} onOpenAI={() => setIsAIOpen(true)} />
+
         <About glassStyle={glassStyle} textSub={textSub} />
         <Experience isDarkMode={isDarkMode} glassStyle={glassStyle} textSub={textSub} />
         <Projects glassStyle={glassStyle} textSub={textSub} />
@@ -84,6 +88,12 @@ const App = () => {
         <Skills glassStyle={glassStyle} textSub={textSub} />
         <Articles isDarkMode={isDarkMode} glassStyle={glassStyle} textSub={textSub} />
         <Contact glassStyle={glassStyle} textSub={textSub} />
+        <AskAI
+          isOpen={isAIOpen}
+          onClose={() => setIsAIOpen(false)}
+          isDarkMode={isDarkMode}
+          textSub={textSub}
+        />
       </main>
 
       <Footer isDarkMode={isDarkMode} />
