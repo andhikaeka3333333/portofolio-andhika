@@ -97,7 +97,7 @@ const App = () => {
       </main>
 
       <Footer isDarkMode={isDarkMode} />
-      <FloatingCV isDarkMode={isDarkMode} />
+      <FloatingCV isDarkMode={isDarkMode} isAIOpen={isAIOpen}/>
     </div>
   );
 };
