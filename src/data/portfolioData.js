@@ -15,7 +15,11 @@ export const profile = {
   age: calculateAge("2008-06-20"),
   location: "Kudus, Jawa Tengah",
   school: "SMK Raden Umar Said Kudus",
-  bio: "Seorang pengembang perangkat lunak muda yang berdedikasi tinggi dengan fokus pada pembuatan solusi digital yang efisien dan estetik. Berpengalaman dalam pengembangan Web (Laravel/React) dan Mobile (Flutter)."
+  bio: "Seorang pengembang perangkat lunak muda yang berdedikasi tinggi dengan fokus pada pembuatan solusi digital yang efisien dan estetik. Berpengalaman dalam pengembangan Web (Laravel/React) dan Mobile (Flutter).",
+  whatsapp: "https://wa.me/6285656596197",
+  email: "mailto:andhikaeka311@gmail.com",
+  linkedin: "https://www.linkedin.com/in/andhika-eka-santosa-852b25281/",
+  github: "https://github.com/andhikaeka3333333"
 };
 
 export const projects = [
