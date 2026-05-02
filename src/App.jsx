@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingCV from './components/FloatingCV';
 import AskAI from './components/AskAI';
+import MatchScore from './components/MatchScore';
 import { Helmet } from "react-helmet";
 
 <Helmet>
@@ -32,7 +33,7 @@ const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isAIOpen, setIsAIOpen] = useState(false);
-
+  const [isMatchScoreOpen, setIsMatchScoreOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -68,7 +69,7 @@ const App = () => {
       </div>
 
       <Navbar
-        isAIOpen={isAIOpen}
+        isAIOpen={isAIOpen || isMatchScoreOpen}
         isScrolled={isScrolled}
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
@@ -79,7 +80,7 @@ const App = () => {
       />
 
       <main className="relative z-10">
-        <Hero isDarkMode={isDarkMode} textSub={textSub} onOpenAI={() => setIsAIOpen(true)} />
+        <Hero isDarkMode={isDarkMode} textSub={textSub} onOpenAI={() => setIsAIOpen(true)} onOpenMatch={() => setIsMatchScoreOpen(true)} />
 
         <About glassStyle={glassStyle} textSub={textSub} />
         <Experience isDarkMode={isDarkMode} glassStyle={glassStyle} textSub={textSub} />
@@ -94,10 +95,15 @@ const App = () => {
           isDarkMode={isDarkMode}
           textSub={textSub}
         />
+        <MatchScore
+          isOpen={isMatchScoreOpen}
+          onClose={() => setIsMatchScoreOpen(false)}
+          isDarkMode={isDarkMode}
+        />
       </main>
 
       <Footer isDarkMode={isDarkMode} />
-      <FloatingCV isDarkMode={isDarkMode} isAIOpen={isAIOpen}/>
+      <FloatingCV isDarkMode={isDarkMode} isAIOpen={isAIOpen} isMatchScoreOpen={isMatchScoreOpen} />
     </div>
   );
 };
