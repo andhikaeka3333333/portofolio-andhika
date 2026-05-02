@@ -10,6 +10,22 @@ const Hero = ({ isDarkMode, textSub, onOpenAI, onOpenMatch }) => {
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className={`absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:30px_30px] md:bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_90%_60%_at_50%_40%,#000_60%,transparent_100%)]`} />
 
+        {/* Efek Laser Horizontal */}
+        <motion.div
+          initial={{ x: "-100vw", opacity: 0 }}
+          animate={{ x: "100vw", opacity: [0, 1, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 0.5 }}
+          className="absolute top-[20%] md:top-[25%] left-0 w-[100px] md:w-[300px] h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"
+        />
+
+        {/* Efek Laser Vertikal */}
+        <motion.div
+          initial={{ y: "100vh", opacity: 0 }}
+          animate={{ y: "-100vh", opacity: [0, 1, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "linear", delay: 1 }}
+          className="absolute left-[10%] md:left-[15%] bottom-0 w-[1px] h-[100px] md:h-[300px] bg-gradient-to-b from-transparent via-blue-400/30 to-transparent"
+        />
+
         {[...Array(5)].map((_, i) => (
           <motion.div
             key={`plus-${i}`}
@@ -55,26 +71,27 @@ const Hero = ({ isDarkMode, textSub, onOpenAI, onOpenMatch }) => {
             {/* Tombol Ask AI */}
             <button
               onClick={(e) => { e.preventDefault(); onOpenAI(); }}
-              className="group relative w-full sm:w-auto p-[2px] rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-[length:200%_auto] animate-[gradient_3s_linear_infinite] hover:scale-[1.02] transition-transform duration-300 shadow-[0_0_20px_rgba(147,51,234,0.2)]"
+              className="group relative w-full sm:w-auto p-[2px] rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-[length:200%_auto] animate-[gradient_3s_linear_infinite] hover:scale-[1.05] active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.2)] hover:shadow-[0_0_35px_rgba(147,51,234,0.5)]"
             >
               <div className={`relative flex items-center justify-center gap-3 px-6 md:px-8 py-4 rounded-[14px] font-bold text-xs md:text-sm tracking-wide ${isDarkMode ? 'bg-[#030712]/90 text-white' : 'bg-white/95 text-gray-900'} backdrop-blur-md overflow-hidden transition-colors`}>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out" />
                 <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-purple-500 animate-pulse shrink-0" />
                 <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent whitespace-nowrap">
                   Kenali Saya via AI
                 </span>
-                <Bot className="w-4 h-4 opacity-70 shrink-0" />
+                <Bot className="w-4 h-4 opacity-70 group-hover:rotate-12 transition-transform shrink-0" />
               </div>
             </button>
 
             {/* Tombol AI Match Score */}
             <button
               onClick={(e) => { e.preventDefault(); onOpenMatch(); }}
-              className="group relative w-full sm:w-auto p-[2px] rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-500 bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] hover:scale-[1.02] transition-transform duration-300 shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+              className="group relative w-full sm:w-auto p-[2px] rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-500 bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] hover:scale-[1.05] active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_35px_rgba(37,99,235,0.5)]"
             >
               <div className={`relative flex items-center justify-center gap-3 px-6 md:px-8 py-4 rounded-[14px] font-bold text-xs md:text-sm tracking-wide ${isDarkMode ? 'bg-[#030712]/90 text-white' : 'bg-white/95 text-gray-900'} backdrop-blur-md transition-colors`}>
-                <Target className="w-4 h-4 md:w-5 md:h-5 text-blue-500 shrink-0" />
+                <Target className="w-4 h-4 md:w-5 md:h-5 text-blue-500 group-hover:scale-125 transition-transform shrink-0" />
                 <span className="whitespace-nowrap">AI Match Score</span>
-                <div className="px-1.5 py-0.5 rounded-md bg-blue-500/10 text-[8px] border border-blue-500/20 text-blue-500 uppercase font-black">New</div>
+                <div className="px-1.5 py-0.5 rounded-md bg-blue-500/10 text-[8px] border border-blue-500/20 text-blue-500 uppercase font-black group-hover:bg-blue-500 group-hover:text-white transition-colors">New</div>
               </div>
             </button>
           </div>
@@ -83,18 +100,18 @@ const Hero = ({ isDarkMode, textSub, onOpenAI, onOpenMatch }) => {
           <div className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
             <a
               href="#projects"
-              className={`w-full sm:w-auto px-8 py-3.5 border rounded-xl font-bold text-sm tracking-wide transition-all hover:scale-[1.02] flex items-center justify-center gap-2 ${isDarkMode
-                  ? 'border-white/10 text-gray-300 hover:bg-white/5 hover:text-white backdrop-blur-sm'
-                  : 'border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 backdrop-blur-sm'
+              className={`w-full sm:w-auto px-8 py-3.5 border rounded-xl font-bold text-sm tracking-wide transition-all hover:scale-[1.05] active:scale-95 flex items-center justify-center gap-2 ${isDarkMode
+                  ? 'border-white/10 text-gray-300 hover:bg-white/5 hover:text-white hover:border-white/30 backdrop-blur-sm'
+                  : 'border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-300 backdrop-blur-sm'
                 }`}
             >
-              Lihat Proyek <ArrowRight className="w-4 h-4" />
+              Lihat Proyek <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#contact"
-              className={`w-full sm:w-auto px-8 py-3.5 border rounded-xl font-bold text-sm tracking-wide transition-all hover:scale-[1.02] text-center ${isDarkMode
-                  ? 'border-white/10 hover:bg-white/5 backdrop-blur-sm text-gray-300'
-                  : 'border-blue-200 hover:bg-blue-50 backdrop-blur-sm text-blue-600'
+              className={`w-full sm:w-auto px-8 py-3.5 border rounded-xl font-bold text-sm tracking-wide transition-all hover:scale-[1.05] active:scale-95 text-center ${isDarkMode
+                  ? 'border-white/10 hover:bg-white/5 backdrop-blur-sm text-gray-300 hover:text-white'
+                  : 'border-blue-200 hover:bg-blue-50 backdrop-blur-sm text-blue-600 shadow-sm shadow-blue-500/5'
                 }`}
             >
               Hubungi Saya

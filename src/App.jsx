@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import FloatingCV from './components/FloatingCV';
 import AskAI from './components/AskAI';
 import MatchScore from './components/MatchScore';
+import CursorTrail from './components/CursorTrail';
 import { Helmet } from "react-helmet";
 
 <Helmet>
@@ -67,7 +68,7 @@ const App = () => {
         <div className={`absolute top-[-10%] left-[-5%] w-[60%] h-[40%] md:w-[40%] ${isDarkMode ? 'bg-blue-600/10' : 'bg-blue-400/10'} blur-[100px] md:blur-[120px] rounded-full`} />
         <div className={`absolute bottom-0 right-0 w-[50%] h-[30%] md:w-[30%] ${isDarkMode ? 'bg-indigo-600/10' : 'bg-indigo-400/10'} blur-[80px] md:blur-[100px] rounded-full`} />
       </div>
-
+      <CursorTrail isDarkMode={isDarkMode} />
       <Navbar
         isAIOpen={isAIOpen || isMatchScoreOpen}
         isScrolled={isScrolled}
