@@ -4,7 +4,7 @@ import { Send, User, Sparkles, X, Briefcase, Terminal, MessageCircle, ChevronRig
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-// Import data portofolio
+// Data portofolio representasi Andhika
 import { profile, projects, timelineData, skillCategories } from '../data/portfolioData';
 
 const AskAI = ({ isOpen, onClose, isDarkMode, textSub }) => {
@@ -30,53 +30,29 @@ const AskAI = ({ isOpen, onClose, isDarkMode, textSub }) => {
   }, [isOpen]);
 
   const personas = [
-    { 
-      id: 'recruiter', 
-      label: 'HR / Recruiter', 
-      icon: Briefcase, 
-      color: 'from-blue-600/20 to-blue-400/20', 
-      iconColor: 'text-blue-500',
-      desc: 'Tanya soal pengalaman kerja & profesionalisme.' 
-    },
-    { 
-      id: 'developer', 
-      label: 'Tech Enthusiast', 
-      icon: Terminal, 
-      color: 'from-purple-600/20 to-purple-400/20', 
-      iconColor: 'text-purple-500',
-      desc: 'Ngobrol teknis soal coding & arsitektur sistem.' 
-    },
-    { 
-      id: 'casual', 
-      label: 'Teman Santai', 
-      icon: MessageCircle, 
-      color: 'from-emerald-600/20 to-emerald-400/20', 
-      iconColor: 'text-emerald-500',
-      desc: 'Kenali Andhika lebih dekat secara personal.' 
-    }
+    { id: 'recruiter', label: 'HR / Recruiter', icon: Briefcase, color: 'from-blue-600/20 to-blue-400/20', iconColor: 'text-blue-500', desc: 'Tanya soal pengalaman kerja.' },
+    { id: 'developer', label: 'Tech Enthusiast', icon: Terminal, color: 'from-purple-600/20 to-purple-400/20', iconColor: 'text-purple-500', desc: 'Ngobrol teknis coding.' },
+    { id: 'casual', label: 'Teman Santai', icon: MessageCircle, color: 'from-emerald-600/20 to-emerald-400/20', iconColor: 'text-emerald-500', desc: 'Kenali Andhika secara personal.' }
   ];
 
   const getSystemPrompt = (currentMode) => {
     const portfolioContext = JSON.stringify({ profile, projects, timelineData, skillCategories });
-    let personaPrompt = "";
-    if (currentMode === 'recruiter') {
-      personaPrompt = "Anda berbicara secara profesional, sopan, dan berorientasi pada hasil. Fokuskan jawaban pada dampak bisnis, kerja sama tim, pengalaman di PT Starindo dan Polytron.";
-    } else if (currentMode === 'developer') {
-      personaPrompt = "Anda berbicara seperti Senior Developer. Gunakan istilah teknis (ReactJS, Laravel, MySQL). Fokus pada tech stack dan alasan teknis pembangunan sistem.";
-    } else {
-      personaPrompt = "Anda berbicara dengan santai (gaul Indonesia). Fokus pada hobi, visi masuk ITS, dan antusiasme belajar.";
-    }
+    let personaPrompt = currentMode === 'recruiter'
+      ? "Profesional, sopan, fokus pada pengalaman kerja dan pencapaian. Projek Polytron hanya yang ada Polytron saja. starindo juga yang ada starindo saja. jangan mengarang"
+      : currentMode === 'developer'
+        ? "Senior Developer vibe, gunakan istilah teknis (React, Laravel, MySQL)."
+        : "Santai, gaul, bahas hobi dan visi masuk ITS.";
 
-    return `Kamu adalah AI representasi Andhika Eka Santosa, Fullstack Developer ${profile.age} tahun. 
+    return `Kamu adalah AI representasi Andhika Eka Santosa. 
     Data: ${portfolioContext}. Gaya: ${personaPrompt}. 
-    PENTING: Gunakan tabel Markdown jika membandingkan data. Gunakan bold untuk poin penting. Jangan halusinasi!`;
+    PENTING: Selalu gunakan format tabel Markdown standar (|---|) untuk menyajikan list data seperti pendidikan atau skill atau apapun agar terbaca sistem.`;
   };
 
   const handleSend = async (text, initialMode = null) => {
     const activeMode = initialMode || mode;
     if (!text.trim() || !activeMode) return;
     if (initialMode) setMode(initialMode);
-    
+
     const userMsg = { role: 'user', content: text };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
@@ -90,23 +66,48 @@ const AskAI = ({ isOpen, onClose, isDarkMode, textSub }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile', 
-          messages: [
-            { role: 'system', content: getSystemPrompt(activeMode) },
-            ...messages,
-            userMsg
-          ],
+          model: 'llama-3.3-70b-versatile',
+          messages: [{ role: 'system', content: getSystemPrompt(activeMode) }, ...messages, userMsg],
           temperature: 0.7,
         })
       });
-
       const data = await response.json();
       setMessages(prev => [...prev, { role: 'assistant', content: data.choices[0].message.content }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Server lagi sibuk, coba tanya lagi ya!" }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "Waduh, koneksi lagi bermasalah nih!" }]);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Styling Tabel Custom agar memiliki garis (Border)
+  const markdownComponents = {
+    table: ({ children }) => (
+      <div className="my-4 overflow-x-auto rounded-lg border border-white/20 shadow-inner">
+        <table className="w-full text-left border-collapse min-w-[300px]">{children}</table>
+      </div>
+    ),
+    thead: ({ children }) => (
+      <thead className={`${isDarkMode ? 'bg-white/10' : 'bg-gray-100'} border-b border-white/20`}>
+        {children}
+      </thead>
+    ),
+    th: ({ children }) => (
+      <th className={`p-3 text-xs font-bold uppercase tracking-wider border-r border-white/10 last:border-r-0`}>
+        {children}
+      </th>
+    ),
+    tr: ({ children }) => (
+      <tr className={`border-b border-white/10 last:border-b-0 hover:bg-white/5 transition-colors`}>
+        {children}
+      </tr>
+    ),
+    td: ({ children }) => (
+      <td className={`p-3 text-xs border-r border-white/10 last:border-r-0`}>
+        {children}
+      </td>
+    ),
+    strong: ({ children }) => <strong className="font-bold text-blue-400">{children}</strong>,
   };
 
   return (
@@ -141,21 +142,17 @@ const AskAI = ({ isOpen, onClose, isDarkMode, textSub }) => {
                       </motion.div>
                       <div className={`absolute -bottom-4 left-1/2 -translate-x-1/2 w-28 h-3 blur-2xl rounded-full ${isDarkMode ? 'bg-blue-500/20' : 'bg-blue-900/10'}`} />
                     </div>
-
-                    <div className="mb-auto md:mb-0">
+                    <div className="mb-auto md:mb-0 text-center w-full">
                       <h2 className="text-xl md:text-3xl font-bold mb-2 tracking-tight">Halo! Saya Virtual Andhika</h2>
-                      <p className={`text-xs md:text-sm max-w-md mb-8 leading-relaxed mx-auto ${textSub}`}>Pilih satu mode untuk mulai mengobrol.</p>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-3xl px-2">
+                      <p className={`text-xs md:text-sm max-w-md mb-8 mx-auto px-4 ${textSub}`}>Pilih satu mode untuk mulai mengobrol.</p>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-3xl px-4 mx-auto">
                         {personas.map((p) => (
                           <button key={p.id} onClick={() => handleSend("Halo, bisa ceritakan tentang dirimu?", p.id)} className={`group p-4 md:p-5 rounded-2xl border text-left transition-all active:scale-[0.98] md:hover:scale-[1.02] ${isDarkMode ? 'bg-white/5 border-white/10 hover:border-blue-500/50' : 'bg-gray-50 border-gray-200 hover:border-blue-500'}`}>
                             <div className="flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0">
                               <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${p.color} flex items-center justify-center md:mb-4 shrink-0`}>
                                 <p.icon className={`w-5 h-5 md:w-6 md:h-6 ${p.iconColor}`} />
                               </div>
-                              <div className="flex-1">
-                                <h4 className="font-bold text-sm mb-0.5 group-hover:text-blue-500 transition-colors">{p.label}</h4>
-                                <p className="text-[10px] opacity-60 md:hidden">Klik untuk mulai chat</p>
-                              </div>
+                              <div className="flex-1 text-sm font-bold group-hover:text-blue-500 transition-colors">{p.label}</div>
                               <ChevronRight className="md:hidden opacity-30 w-4 h-4" />
                             </div>
                           </button>
@@ -167,25 +164,19 @@ const AskAI = ({ isOpen, onClose, isDarkMode, textSub }) => {
                   <div className="p-4 md:p-8 flex flex-col gap-6">
                     {messages.map((msg, idx) => (
                       <motion.div key={idx} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex items-start gap-3 md:gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                        <div className={`w-9 h-9 md:w-10 md:h-10 rounded-full shrink-0 border flex items-center justify-center overflow-hidden ${msg.role === 'user' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'bg-gray-100 border-gray-200'}`}>
+                        <div className={`w-9 h-9 md:w-10 md:h-10 rounded-full shrink-0 border flex items-center justify-center overflow-hidden ${msg.role === 'user' ? 'bg-blue-600 text-white shadow-lg' : 'bg-gray-100'}`}>
                           {msg.role === 'user' ? <User size={16} /> : <img src="images/profile.png" alt="Profile" className="w-full h-full object-cover" />}
                         </div>
-                        
-                        {/* Markdown Styling */}
-                        <div className={`max-w-[90%] md:max-w-[80%] p-3 md:p-4 rounded-2xl shadow-sm overflow-x-auto ${msg.role === 'user' ? 'bg-blue-600 text-white rounded-tr-none' : isDarkMode ? 'bg-white/5 border border-white/10 rounded-tl-none text-gray-200' : 'bg-gray-100 border-gray-200 rounded-tl-none text-gray-800'}`}>
-                          <div className={`prose prose-sm max-w-none ${msg.role === 'user' ? 'prose-invert' : isDarkMode ? 'prose-invert' : 'prose-slate'} prose-table:border prose-th:bg-white/10 prose-th:p-2 prose-td:p-2 prose-td:border-t prose-td:border-white/10`}>
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        <div className={`max-w-[95%] md:max-w-[85%] p-3 md:p-4 rounded-2xl ${msg.role === 'user' ? 'bg-blue-600 text-white rounded-tr-none' : isDarkMode ? 'bg-white/5 border border-white/10 rounded-tl-none text-gray-200' : 'bg-gray-100 border-gray-200 rounded-tl-none text-gray-800'}`}>
+                          <div className="text-xs md:text-sm leading-relaxed overflow-x-auto">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                               {msg.content}
                             </ReactMarkdown>
                           </div>
                         </div>
                       </motion.div>
                     ))}
-                    {isLoading && (
-                       <div className="flex items-center gap-2 opacity-50 text-[10px] ml-12">
-                        <div className="animate-bounce">●</div><div className="animate-bounce delay-100">●</div><div className="animate-bounce delay-200">●</div>
-                      </div>
-                    )}
+                    {isLoading && <div className="flex items-center gap-2 opacity-50 text-[10px] ml-12 animate-pulse">Berpikir...</div>}
                     <div ref={messagesEndRef} />
                   </div>
                 )}
@@ -194,12 +185,10 @@ const AskAI = ({ isOpen, onClose, isDarkMode, textSub }) => {
 
             {/* Input Footer */}
             {mode && (
-              <div className={`p-4 md:p-6 border-t ${isDarkMode ? 'bg-[#030712] border-white/10' : 'bg-white border-gray-100'}`}>
-                <form onSubmit={(e) => { e.preventDefault(); handleSend(input); }} className="relative max-w-4xl mx-auto flex gap-2 md:gap-3">
-                  <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={`Tanya sebagai ${mode}...`} className={`flex-1 p-3 md:p-4 pr-12 rounded-2xl outline-none border transition-all text-sm ${isDarkMode ? 'bg-white/5 border-white/10 focus:border-blue-500 text-white' : 'bg-gray-50 border-gray-200 focus:border-blue-500 text-gray-900'}`} />
-                  <button type="submit" disabled={isLoading || !input.trim()} className={`p-3 md:p-4 rounded-2xl transition-all shadow-lg ${input.trim() ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-blue-500/30' : 'bg-gray-500/20 text-gray-500 cursor-not-allowed'}`}>
-                    <Send size={18} />
-                  </button>
+              <div className={`p-4 md:p-6 border-t ${isDarkMode ? 'bg-[#030712] border-white/10' : 'bg-white'}`}>
+                <form onSubmit={(e) => { e.preventDefault(); handleSend(input); }} className="relative max-w-4xl mx-auto flex gap-2">
+                  <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={`Tanya sebagai ${mode}...`} className={`flex-1 p-3 md:p-4 rounded-2xl outline-none border transition-all text-sm ${isDarkMode ? 'bg-white/5 border-white/10 focus:border-blue-500 text-white' : 'bg-gray-50 focus:border-blue-500'}`} />
+                  <button type="submit" disabled={isLoading || !input.trim()} className={`p-3 md:p-4 rounded-2xl bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-30`}><Send size={18} /></button>
                 </form>
               </div>
             )}
