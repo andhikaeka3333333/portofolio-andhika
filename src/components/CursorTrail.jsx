@@ -19,7 +19,6 @@ const CursorTrail = ({ isDarkMode }) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
       
-      // Tambahkan partikel baru setiap kursor bergerak
       for (let i = 0; i < 2; i++) {
         particles.current.push(new Particle(mouse.current.x, mouse.current.y));
       }
@@ -30,9 +29,15 @@ const CursorTrail = ({ isDarkMode }) => {
         this.x = x;
         this.y = y;
         this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-        this.color = isDarkMode ? 'rgba(59, 130, 246, ' : 'rgba(37, 99, 235, '; // Warna biru tailwind
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        
+        // --- PERUBAHAN DISINI ---
+        // Dark mode: Biru Cerah (Tailwind blue-400: 96, 165, 250)
+        // Light mode: Ungu Tua (Tailwind purple-600: 147, 51, 234) agar kontras di BG putih
+        this.color = isDarkMode ? '96, 165, 250' : '147, 51, 234'; 
+        // -------------------------
+
         this.alpha = 1;
         this.decay = Math.random() * 0.015 + 0.015;
       }
@@ -44,7 +49,7 @@ const CursorTrail = ({ isDarkMode }) => {
       }
 
       draw() {
-        ctx.fillStyle = this.color + this.alpha + ')';
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -58,7 +63,6 @@ const CursorTrail = ({ isDarkMode }) => {
         particles.current[i].update();
         particles.current[i].draw();
 
-        // Hapus partikel jika sudah transparan
         if (particles.current[i].alpha <= 0) {
           particles.current.splice(i, 1);
           i--;
@@ -83,7 +87,11 @@ const CursorTrail = ({ isDarkMode }) => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[9999]"
-      style={{ mixBlendMode: 'screen' }}
+      // --- PERUBAHAN DISINI ---
+      // 'screen' di dark mode untuk efek glow
+      // 'normal' di light mode agar warna ungu solid dan jelas
+      style={{ mixBlendMode: isDarkMode ? 'screen' : 'normal' }}
+      // -------------------------
     />
   );
 };

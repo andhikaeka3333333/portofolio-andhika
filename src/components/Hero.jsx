@@ -40,7 +40,7 @@ const Hero = ({ isDarkMode, textSub, onOpenAI, onOpenMatch }) => {
       </div>
 
       {/* Main Content */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 w-full max-w-4xl mx-auto mt-10">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 w-full max-w-4xl mx-auto mt-10 pb-20">
 
         {/* Badge Profile */}
         <div className={`inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full border mb-6 md:mb-8 ${isDarkMode ? 'bg-white/5 border-white/10 text-blue-400' : 'bg-blue-50 border-blue-100 text-blue-600'} text-[9px] md:text-[10px] font-bold tracking-widest uppercase backdrop-blur-sm shadow-sm`}>
@@ -117,7 +117,6 @@ const Hero = ({ isDarkMode, textSub, onOpenAI, onOpenMatch }) => {
               Hubungi Saya
             </a>
           </div>
-
         </div>
       </motion.div>
 
