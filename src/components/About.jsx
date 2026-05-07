@@ -19,7 +19,6 @@ const About = ({ glassStyle, textSub }) => {
               <div className="absolute inset-0 bg-blue-600/10 mix-blend-overlay group-hover:bg-transparent transition-all" />
             </div>
           </div>
-
           <div className="md:col-span-3 relative z-10 text-center md:text-left">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 tracking-tight italic">Profil Singkat</h2>
             <p className={`${textSub} text-sm md:text-base leading-relaxed mb-6 md:mb-8`}>

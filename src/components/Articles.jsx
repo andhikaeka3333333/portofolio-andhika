@@ -61,7 +61,8 @@ const Articles = ({ glassStyle, textSub, isDarkMode }) => {
                   <p className={`${textSub} text-sm line-clamp-2 mb-6`}>{article.content}</p>
                   <div className="pt-4 border-t border-white/5 flex items-center text-blue-500 text-xs font-bold gap-2 group-hover:gap-4 transition-all">
                     BACA SELENGKAPNYA <ArrowRight size={14}/>
-                  </div>
+                    
+                  </div>9
                 </div>
               </motion.div>
             ))}
