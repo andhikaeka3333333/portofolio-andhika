@@ -12,7 +12,7 @@ const About = ({ glassStyle, textSub }) => {
           <div className="md:col-span-2 relative z-10 mx-auto w-full max-w-[280px] md:max-w-none">
             <div className="aspect-square md:aspect-[4/5] rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl relative group">
               <img
-                src="images/andhika.png"
+                src="images/andhika-new.png"
                 alt={profile.name}
                 className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
               />

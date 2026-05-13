@@ -14,7 +14,7 @@ export const profile = {
   title: "Fullstack & Mobile Developer",
   age: calculateAge("2008-06-20"),
   location: "Kudus, Jawa Tengah",
-  school: "SMK Raden Umar Said Kudus",
+  school: "Institut Teknologi Sepuluh Nopember (ITS)",
   bio: "Seorang pengembang perangkat lunak muda yang berdedikasi tinggi dengan fokus pada pembuatan solusi digital yang efisien dan estetik. Berpengalaman dalam pengembangan Web (Laravel/React) dan Mobile (Flutter).",
   whatsapp: "https://wa.me/6285656596197",
   email: "mailto:andhikaeka311@gmail.com",

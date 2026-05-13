@@ -62,7 +62,7 @@ const Articles = ({ glassStyle, textSub, isDarkMode }) => {
                   <div className="pt-4 border-t border-white/5 flex items-center text-blue-500 text-xs font-bold gap-2 group-hover:gap-4 transition-all">
                     BACA SELENGKAPNYA <ArrowRight size={14}/>
                     
-                  </div>9
+                  </div>
                 </div>
               </motion.div>
             ))}

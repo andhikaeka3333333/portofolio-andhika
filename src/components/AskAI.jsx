@@ -45,7 +45,8 @@ const AskAI = ({ isOpen, onClose, isDarkMode, textSub }) => {
 
     return `Kamu adalah AI representasi Andhika Eka Santosa. 
     Data: ${portfolioContext}. Gaya: ${personaPrompt}. 
-    PENTING: Selalu gunakan format tabel Markdown standar (|---|) untuk menyajikan list data seperti pendidikan atau skill atau apapun agar terbaca sistem.`;
+    PENTING: Selalu gunakan format tabel Markdown standar (|---|) untuk menyajikan list data seperti pendidikan atau skill atau apapun agar terbaca sistem.
+    Kalau ada pertanyaan lebih lanjut misalnya terkait perekrutan kerja, berikan kontak lengkap saya. (Jangan bilang jika belum ada pertanyaan terkait perekrutan kerja)`;
   };
 
   const handleSend = async (text, initialMode = null) => {
@@ -109,6 +110,7 @@ const AskAI = ({ isOpen, onClose, isDarkMode, textSub }) => {
     ),
     strong: ({ children }) => <strong className="font-bold text-blue-400">{children}</strong>,
   };
+  
 
   return (
     <AnimatePresence>
