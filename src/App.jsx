@@ -35,6 +35,7 @@ const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isAIOpen, setIsAIOpen] = useState(false);
   const [isMatchScoreOpen, setIsMatchScoreOpen] = useState(false);
+  const [hideNavbar, setHideNavbar] = useState(false);
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -69,16 +70,18 @@ const App = () => {
         <div className={`absolute bottom-0 right-0 w-[50%] h-[30%] md:w-[30%] ${isDarkMode ? 'bg-indigo-600/10' : 'bg-indigo-400/10'} blur-[80px] md:blur-[100px] rounded-full`} />
       </div>
       <CursorTrail isDarkMode={isDarkMode} />
-      <Navbar
-        isAIOpen={isAIOpen || isMatchScoreOpen}
-        isScrolled={isScrolled}
-        isDarkMode={isDarkMode}
-        toggleTheme={toggleTheme}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-        navBg={navBg}
-        textSub={textSub}
-      />
+      {!hideNavbar && (
+        <Navbar
+          isAIOpen={isAIOpen || isMatchScoreOpen}
+          isScrolled={isScrolled}
+          isDarkMode={isDarkMode}
+          toggleTheme={toggleTheme}
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+          navBg={navBg}
+          textSub={textSub}
+        />
+      )}
 
       <main className="relative z-10">
         <Hero isDarkMode={isDarkMode} textSub={textSub} onOpenAI={() => setIsAIOpen(true)} onOpenMatch={() => setIsMatchScoreOpen(true)} />
@@ -88,7 +91,13 @@ const App = () => {
         <Projects glassStyle={glassStyle} textSub={textSub} />
         <Certificates isDarkMode={isDarkMode} glassStyle={glassStyle} textSub={textSub} />
         <Skills glassStyle={glassStyle} textSub={textSub} />
-        <Articles isDarkMode={isDarkMode} glassStyle={glassStyle} textSub={textSub} />
+        
+        <Articles 
+          isDarkMode={isDarkMode} 
+          glassStyle={glassStyle} 
+          textSub={textSub} 
+          setHideNavbar={setHideNavbar} 
+        />
         <Contact glassStyle={glassStyle} textSub={textSub} />
         <AskAI
           isOpen={isAIOpen}

@@ -1,12 +1,27 @@
 import { useEffect, useState } from 'react'
 import { supabase } from './supabase'
+// Pastikan untuk mengimport CommentSection jika berada di file terpisah
+// import CommentSection from './CommentSection' 
 
-const Blog = () => {
+const Blog = ({ setHideNavbar }) => {
   const [articles, setArticles] = useState([])
 
   useEffect(() => {
+    // 1. Ambil data artikel dari Supabase
     getArticles()
-  }, [])
+
+    // 2. Sembunyikan navbar saat halaman/komponen Blog ini dimuat
+    if (setHideNavbar) {
+      setHideNavbar(true)
+    }
+
+    // 3. Fungsi Cleanup: Munculkan kembali navbar saat user keluar dari blog
+    return () => {
+      if (setHideNavbar) {
+        setHideNavbar(false)
+      }
+    }
+  }, [setHideNavbar])
 
   async function getArticles() {
     const { data } = await supabase.from('articles').select('*')
@@ -21,15 +36,20 @@ const Blog = () => {
       
       <div className="grid gap-6">
         {articles.map((article) => (
-          <div key={article.id} className="p-6 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all">
+          <div 
+            key={article.id} 
+            className="p-6 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all"
+          >
             <h2 className="text-2xl font-semibold mb-2">{article.title}</h2>
             <p className="text-gray-400 leading-relaxed">{article.content}</p>
             
             {/* Bagian Komentar Nanti di Sini */}
-            <CommentSection articleId={article.id} />
+            {/* <CommentSection articleId={article.id} /> */}
           </div>
         ))}
       </div>
     </div>
   )
 }
+
+export default Blog
